@@ -17,7 +17,7 @@ import {
   createFileNameFromRelative,
   isDefultExportPresentInFile,
   findAllNamedExportsFromAFile,
-} from './codemod2';
+} from './codemod';
 
 const babelParser = require('@babel/parser');
 
