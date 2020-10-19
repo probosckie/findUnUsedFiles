@@ -52,3 +52,28 @@ export const returnAbsolutelyAllFiles = (dir, filelist) => {
   });
   return filelist;
 };
+
+const isAlphaNumeric = (f) =>
+  (f >= 'a' && f <= 'z') || (f >= 'A' && f <= 'Z') || (f >= '0' && f <= '9');
+
+
+export const searchWholeWord = (line, word) => {
+  let regExp = new RegExp('\\b' + word + '\\b');
+
+  const test = line.match(regExp);
+  const index = regExp.test(line) && test && test.index;
+
+  if (test && 'index' in test && index !== -1) {
+    if (index === 0 && !isAlphaNumeric(line[index + word.length])) {
+      return true;
+    }
+    if (
+      !isAlphaNumeric(line[index - 1]) &&
+      !isAlphaNumeric(line[index + word.length])
+    ) {
+      return true;
+    }
+    return false;
+  }
+  return false;
+};
